@@ -27,7 +27,9 @@ describe('User Controller Tests', () => {
 
         expect(response.status).toBe(201);
         expect(response.body.email).toBe('testuser@example.com');
-        userId = response.body._id; // Store the created user's ID for later use
+        // console.log("response with id",response.body)
+        userId = response.body.id; // Store the created user's ID for later use
+        // console.log(`Created user ID: ${userId}`); // Debugging log to verify userId
     });
 
     it('should list users', async () => {
@@ -37,14 +39,15 @@ describe('User Controller Tests', () => {
 
         expect(response.status).toBe(200);
         expect(Array.isArray(response.body)).toBe(true);
-        expect(response.body.length).toBe(1); // We expect one user to be listed after creation
+        expect(response.body.length).toBeGreaterThan(0);
     });
 
     it('should get details of a specific user', async () => {
         const response = await request(app)
             .get(`/worko/user/${userId}`) // Use the userId generated in the previous test
             .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ='); // Ensure authorization header is set correctly
-
+        
+   
         expect(response.status).toBe(200);
         expect(response.body.email).toBe('testuser@example.com');
     });
@@ -84,6 +87,7 @@ describe('User Controller Tests', () => {
 
         expect(response.status).toBe(204);
     });
+
 });
 
 

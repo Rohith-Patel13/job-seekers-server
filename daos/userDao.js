@@ -16,11 +16,11 @@ exports.createUser = async (userDto) => {
 };
 
 exports.updateUser = async (userId, userDto) => {
-   return await User.findByIdAndUpdate(userId, userDto);
+   return await User.findByIdAndUpdate(userId, userDto, { new: true });
 };
 
 exports.partialUpdateUser = async (userId, userDto) => {
-   return await User.findByIdAndUpdate(userId, userDto );
+   return await User.findByIdAndUpdate(userId, userDto, { new: true });
 };
 
 
