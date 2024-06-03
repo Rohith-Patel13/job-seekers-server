@@ -2,6 +2,8 @@ console.log("userController.js top")
 const userService = require('../services/userService');
 const { validateUser, validateUserId } = require('../validators/userValidator');
 
+
+
 exports.listUsers = async (requsetObject, responseObject) => {
     try {
         const users = await userService.listUsers();
@@ -33,6 +35,7 @@ exports.createUser = async (requsetObject, responseObject) => {
         responseObject.status(400).send({ error: error.message });
     }
 };
+
 
 
 exports.updateUser = async (requsetObject, responseObject) => {

@@ -1,6 +1,6 @@
 console.log("userService.js top")
 const userDao = require('../daos/userDao');
-const { userDto } = require('../dtos/userDto');
+const {userDto} = require("../dtos/userDto")
 
 
 exports.listUsers = async () => {
@@ -13,15 +13,20 @@ exports.getUserById = async (userId) => {
     return userDto(user);
 };
 
-exports.createUser = async (userDto) => {
-    const user = await userDao.createUser(userDto);
+exports.createUser = async (userDtos) => {
+    // console.log(userDtos)
+    // console.log(userDto)
+    const user = await userDao.createUser(userDtos);
     return userDto(user);
 };
+
+
 
 exports.updateUser = async (userId, userDto) => {
     const user = await userDao.updateUser(userId, userDto);
     return userDto(user);
 };
+
 
 exports.partialUpdateUser = async (userId, userDto) => {
     const user = await userDao.partialUpdateUser(userId, userDto);

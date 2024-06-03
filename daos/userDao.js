@@ -10,8 +10,8 @@ exports.getUserById = async (userId) => {
 };
 
 exports.createUser = async (userDto) => {
-    const user = new User(userDto);
-    return await user.save();
+    const user = await User.create(userDto);
+    return  user
 };
 
 exports.updateUser = async (userId, userDto) => {
