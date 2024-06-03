@@ -3,12 +3,13 @@ const express = require('express');
 const userRoutes = require('../routes/userRoutes');
 require('../test/setup'); 
 
-
 const app = express();
 app.use(express.json());
 app.use('/worko/user', userRoutes);
 
 describe('User Controller Tests', () => {
+    let userId; // Define userId variable outside the tests to make it accessible to all tests
+
     it('should create a user', async () => {
         const response = await request(app)
             .post('/worko/user')
@@ -23,6 +24,7 @@ describe('User Controller Tests', () => {
 
         expect(response.status).toBe(201);
         expect(response.body.email).toBe('testuser@example.com');
+        userId = response.body._id; // Store the created user's ID for later use
     });
 
     it('should list users', async () => {
@@ -35,21 +37,8 @@ describe('User Controller Tests', () => {
     });
 
     it('should get details of a specific user', async () => {
-        const newUser = await request(app)
-            .post('/worko/user')
-            .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ=') // Base64 encoded admin:password
-            .send({
-                email: 'testuser@example.com',
-                name: 'Test User',
-                age: 30,
-                city: 'Test City',
-                zipCode: '12345'
-            });
-
-        const userId = newUser.body._id;
-
         const response = await request(app)
-            .get(`/worko/user/${userId}`)
+            .get(`/worko/user/${userId}`) // Use the userId generated in the previous test
             .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ=');
 
         expect(response.status).toBe(200);
@@ -57,21 +46,8 @@ describe('User Controller Tests', () => {
     });
 
     it('should update an existing user', async () => {
-        const newUser = await request(app)
-            .post('/worko/user')
-            .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ=') // Base64 encoded admin:password
-            .send({
-                email: 'testuser@example.com',
-                name: 'Test User',
-                age: 30,
-                city: 'Test City',
-                zipCode: '12345'
-            });
-
-        const userId = newUser.body._id;
-
         const response = await request(app)
-            .put(`/worko/user/${userId}`)
+            .put(`/worko/user/${userId}`) // Use the userId generated in the first test
             .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ=') // Base64 encoded admin:password
             .send({
                 email: 'updateduser@example.com',
@@ -86,21 +62,8 @@ describe('User Controller Tests', () => {
     });
 
     it('should partially update an existing user', async () => {
-        const newUser = await request(app)
-            .post('/worko/user')
-            .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ=') // Base64 encoded admin:password
-            .send({
-                email: 'testuser@example.com',
-                name: 'Test User',
-                age: 30,
-                city: 'Test City',
-                zipCode: '12345'
-            });
-
-        const userId = newUser.body._id;
-
         const response = await request(app)
-            .patch(`/worko/user/${userId}`)
+            .patch(`/worko/user/${userId}`) // Use the userId generated in the first test
             .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ=') // Base64 encoded admin:password
             .send({
                 name: 'Partially Updated User'
@@ -111,21 +74,8 @@ describe('User Controller Tests', () => {
     });
 
     it('should delete a user', async () => {
-        const newUser = await request(app)
-            .post('/worko/user')
-            .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ=') // Base64 encoded admin:password
-            .send({
-                email: 'testuser@example.com',
-                name: 'Test User',
-                age: 30,
-                city: 'Test City',
-                zipCode: '12345'
-            });
-
-        const userId = newUser.body._id;
-
         const response = await request(app)
-            .delete(`/worko/user/${userId}`)
+            .delete(`/worko/user/${userId}`) // Use the userId generated in the first test
             .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ='); // Base64 encoded admin:password
 
         expect(response.status).toBe(204);
