@@ -1,3 +1,4 @@
+console.log("app.js top")
 const express = require("express")
 const app=express()
 const {connect} = require("mongoose")
@@ -7,6 +8,8 @@ const morgan=require("morgan")
 app.use(express.json())
 app.use(cors())
 app.use(morgan("dev"))
+const userRoutes = require("./routes/userRoutes");
+
 
 app.listen(7456,async()=>{
     console.log("server running at given port number.")
@@ -18,5 +21,5 @@ app.listen(7456,async()=>{
     }
 })
 
-//Delete from code after using below url:
-// https://chatgpt.com/c/cdc01684-eddd-4cfc-bd5f-2e8e5d71aa7d
+app.use("/worko/user", userRoutes);
+console.log("app.js bottom")
