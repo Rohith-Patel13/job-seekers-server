@@ -9,9 +9,9 @@ Authorization: Basic YWRtaW46cGFzc3dvcmQ=
 Content-Type: application/json
 
 {
-    "email": "ravi@gmail.com",
-    "name": "ravi",
-    "age": 47,
+    "email": "mony@gmail.com",
+    "name": "mony",
+    "age": 25,
     "city": "Hyderabad",
     "zipCode": "10011"
 }

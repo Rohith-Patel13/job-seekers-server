@@ -2,11 +2,11 @@ console.log("userDao.js top")
 const User = require('../models/userModel');
 
 exports.listUsers = async () => {
-    return await User.find({ deleted: false });
+    return await User.find();
 };
 
 exports.getUserById = async (userId) => {
-    return await User.findById(userId).where({ deleted: false });
+    return await User.findById(userId);
 };
 
 exports.createUser = async (userDto) => {
@@ -15,14 +15,14 @@ exports.createUser = async (userDto) => {
 };
 
 exports.updateUser = async (userId, userDto) => {
-    return await User.findByIdAndUpdate(userId, userDto, { new: true }).where({ deleted: false });
+    return await User.findByIdAndUpdate(userId, userDto);
 };
 
 exports.partialUpdateUser = async (userId, userDto) => {
-    return await User.findByIdAndUpdate(userId, { $set: userDto }, { new: true }).where({ deleted: false });
+    return await User.findByIdAndUpdate(userId, userDto );
 };
 
 exports.deleteUser = async (userId) => {
-    return await User.findByIdAndUpdate(userId, { deleted: true }, { new: true });
+    return await User.findByIdAndUpdate(userId);
 };
 console.log("userDao.js bottom")

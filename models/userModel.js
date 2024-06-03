@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
     age: { type: Number, required: true },
     city: { type: String, required: true },
     zipCode: { type: String, required: true },
-    deleted: { type: Boolean, default: false }
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

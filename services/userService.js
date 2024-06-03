@@ -22,14 +22,14 @@ exports.createUser = async (userDtos) => {
 
 
 
-exports.updateUser = async (userId, userDto) => {
-    const user = await userDao.updateUser(userId, userDto);
+exports.updateUser = async (userId, userDtos) => {
+    const user = await userDao.updateUser(userId, userDtos);
     return userDto(user);
 };
 
 
-exports.partialUpdateUser = async (userId, userDto) => {
-    const user = await userDao.partialUpdateUser(userId, userDto);
+exports.partialUpdateUser = async (userId, userDtos) => {
+    const user = await userDao.partialUpdateUser(userId, userDtos);
     return userDto(user);
 };
 
