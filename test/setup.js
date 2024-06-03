@@ -1,3 +1,5 @@
+console.log("setup.js top")
+
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -16,3 +18,6 @@ afterEach(async () => {
         await collection.deleteMany({});
     }
 });
+
+
+console.log("setup.js bottom")

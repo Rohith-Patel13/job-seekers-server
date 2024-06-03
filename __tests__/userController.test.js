@@ -1,3 +1,6 @@
+console.log("userController.test.js top")
+
+
 const request = require('supertest');
 const express = require('express');
 const userRoutes = require('../routes/userRoutes');
@@ -81,3 +84,7 @@ describe('User Controller Tests', () => {
         expect(response.status).toBe(204);
     });
 });
+
+
+console.log("userController.test.js bottom")
+
