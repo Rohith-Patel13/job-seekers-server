@@ -3,16 +3,49 @@ GET http://localhost:7456/worko/user
 Authorization: Basic YWRtaW46cGFzc3dvcmQ=
 
 
+### Get Details of a Specific User
+GET http://localhost:7456/worko/user/665d839da580ea95e211a9fc
+Authorization: Basic YWRtaW46cGFzc3dvcmQ=
+
+
+
 ### Create a New User
 POST http://localhost:7456/worko/user
 Authorization: Basic YWRtaW46cGFzc3dvcmQ=
 Content-Type: application/json
 
 {
-    "email": "mony@gmail.com",
-    "name": "mony",
-    "age": 25,
-    "city": "Hyderabad",
-    "zipCode": "10011"
+    "email": "dummy2@gmail.com",
+    "name": "dummy2",
+    "age": 22,
+    "city": "austria",
+    "zipCode": "20012"
 }
 
+
+### Update an Existing User
+PUT http://localhost:7456/worko/user/665d83ffa580ea95e211aa00
+Authorization: Basic YWRtaW46cGFzc3dvcmQ=
+Content-Type: application/json
+
+{
+    "email": "moni123@gmail.com",
+    "name": "Mrudula",
+    "age": 25,
+    "city": "Hyderabad",
+    "zipCode": "10001"
+}
+
+### Partially Update an Existing User
+PATCH http://localhost:7456/worko/user/665d83c3a580ea95e211a9fe
+Authorization: Basic YWRtaW46cGFzc3dvcmQ=
+Content-Type: application/json
+
+{
+    "name": "jenny"
+}
+
+
+### Soft Delete a User
+DELETE http://localhost:7456/worko/user/665da0d9c188d6e83a0b1519
+Authorization: Basic YWRtaW46cGFzc3dvcmQ=

@@ -29,7 +29,7 @@ exports.createUser = async (requsetObject, responseObject) => {
     try {
         const userDto = requsetObject.body;
         await validateUser(userDto);
-        const user = await userService.createUser(userDto);
+        const user = await  userService.createUser(userDto);
         responseObject.status(201).send(user);
     } catch (error) {
         responseObject.status(400).send({ error: error.message });

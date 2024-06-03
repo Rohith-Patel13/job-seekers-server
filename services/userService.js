@@ -3,8 +3,10 @@ const userDao = require('../daos/userDao');
 const {userDto} = require("../dtos/userDto")
 
 
+
 exports.listUsers = async () => {
-    const users = await userDao.listUsers();
+    const users = await  userDao.listUsers();
+    
     return users.map(user => userDto(user));
 };
 
@@ -26,6 +28,7 @@ exports.updateUser = async (userId, userDtos) => {
     const user = await userDao.updateUser(userId, userDtos);
     return userDto(user);
 };
+
 
 
 exports.partialUpdateUser = async (userId, userDtos) => {
