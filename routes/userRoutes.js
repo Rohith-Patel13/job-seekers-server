@@ -11,6 +11,7 @@ router.use(basicAuth({
     challenge: true
 }));
 
+
 router.get('/', userController.listUsers);
 router.get('/:userId', userController.getUserById);
 router.post('/', userController.createUser);

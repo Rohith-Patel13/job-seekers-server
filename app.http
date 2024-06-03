@@ -1,0 +1,13 @@
+### User Endpoints
+
+# Create a new user
+POST http://localhost:7456/worko/user/
+Content-Type: application/json
+
+{
+    "email": "John@gmail.com",
+    "name": "John Doe",
+    "age": 30,
+    "city": "New York",
+    "zipCode": "10001"
+}
