@@ -36,9 +36,54 @@ describe('User Controller Tests', () => {
             .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ=');
 
         expect(response.status).toBe(200);
-        expect(response.body).toEqual([]);
+        expect(Array.isArray(response.body)).toBe(true);
+        expect(response.body.length).toBe(1); // We expect one user to be listed after creation
     });
 
+    it('should get details of a specific user', async () => {
+        const response = await request(app)
+            .get(`/worko/user/${userId}`) // Use the userId generated in the previous test
+            .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ='); // Ensure authorization header is set correctly
+
+        expect(response.status).toBe(200);
+        expect(response.body.email).toBe('testuser@example.com');
+    });
+
+    it('should update an existing user', async () => {
+        const response = await request(app)
+            .put(`/worko/user/${userId}`) // Use the userId generated in the first test
+            .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ=') // Base64 encoded admin:password
+            .send({
+                email: 'updateduser@example.com',
+                name: 'Updated User',
+                age: 35,
+                city: 'Updated City',
+                zipCode: '54321'
+            });
+
+        expect(response.status).toBe(200);
+        expect(response.body.email).toBe('updateduser@example.com');
+    });
+
+    it('should partially update an existing user', async () => {
+        const response = await request(app)
+            .patch(`/worko/user/${userId}`) // Use the userId generated in the first test
+            .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ=') // Base64 encoded admin:password
+            .send({
+                name: 'Partially Updated User'
+            });
+
+        expect(response.status).toBe(200);
+        expect(response.body.name).toBe('Partially Updated User');
+    });
+
+    it('should delete a user', async () => {
+        const response = await request(app)
+            .delete(`/worko/user/${userId}`) // Use the userId generated in the first test
+            .set('Authorization', 'Basic YWRtaW46cGFzc3dvcmQ='); // Base64 encoded admin:password
+
+        expect(response.status).toBe(204);
+    });
 });
 
 
