@@ -41,3 +41,17 @@ npm run dev
 ```sh
 npm test
 ```
+
+
+
+DTOs (Data Transfer Objects)
+Purpose: DTOs are used to transfer data between different parts of an application, especially between the client and server in web applications.
+
+
+
+DAOs (Data Access Objects)
+Purpose: The server-side application uses DAOs to interact with the database, ensuring a clean separation of concerns.
+
+
+JOI (JavaScript Object Schema Description Language and Validator) is a powerful library for data validation in JavaScript, particularly useful for validating request payloads in web applications. 
+By using JOI, developers can write clear, maintainable, and robust validation logic, improving the reliability and security of their applications.
